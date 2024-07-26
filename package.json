@@ -1,0 +1,20 @@
+{
+  "name": "spectra4626rewards-deployer",
+  "version": "1.0.0",
+  "description": "Repository to deploy instances of Spectra4626Rewards",
+  "main": "",
+  "repository": "https://github.com/perspectivefi/spectra4626rewards-deployer.git",
+  "author": "Perspective",
+  "license": "MIT",
+  "files": [
+    "src/**/*.sol"
+  ],
+  "devDependencies": {
+    "prettier": "3.3.3",
+    "prettier-plugin-solidity": "^1.3.1"
+  },
+  "scripts" : {
+    "format": "prettier --plugin=prettier-plugin-solidity --write \"**/*.sol\"",
+    "lint": "prettier --plugin=prettier-plugin-solidity --list-different \"**/*.{sol}\""
+  }
+}

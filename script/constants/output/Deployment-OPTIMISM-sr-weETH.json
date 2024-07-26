@@ -1,0 +1,10 @@
+{
+  "sr-weETH": {
+    "accessManager": "0x786Da12e9836a9ff9b7d92e8bac1C849e2ACe378",
+    "implementation": "0x32d09fd0b030349Ca36B224E1DC736eD484C0c4F",
+    "proxy": "0x1B56E30b6efD7cfDe46eE3E29B851b9094D5810B",
+    "proxy-admin": "0x31C4a37F7CE43CCADd84Ddc1F6c2a4c40c4831b9",
+    "proxy-admin-owner": "0xF8576B3830FA131bBd39dA1E97Fbb24864156470",
+    "underlying-token": "0x5A7fACB970D094B6C7FF1df0eA68D99E6e73CBFF"
+  }
+}
