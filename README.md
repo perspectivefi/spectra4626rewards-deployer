@@ -11,6 +11,9 @@ This repository contains the implementation and deployment scripts for Spectra46
 The `Spectra4626Rewards` is a contract that inherits from OpenZeppelin's `ERC4626Upgradeable` and additionnally provides logic to facilitate the claiming of external rewards via an associated `RewardsProxy` instance.
 `Spectra4626Rewards` utilizes OpenZeppelin's Access Control framework, allowing centralized role management which can be delegated to DAO accounts.
 
+##### When to use :
+The `Spectra4626Rewards` is typically used when an IBT is not ERC4626-compliant and a wrapper for it is hardly realisable. `Spectra4626Rewards` can be deployed with the IBT set as the underlying token, the default wrapper/underlying ratio set to 1, and a customizable decimals offset which represents the desired difference in decimals between the underlying and the wrapper.
+
 #### RewardsProxy
 
 > *[IRewardsProxy](./src/utils/interfaces/IRewardsProxy.sol)*
@@ -45,13 +48,14 @@ For more information, please refer to the [Foundry documentation](https://book.g
 ```
 DEPLOYMENT_NETWORK="MAINNET"
 UNDERLYING_TOKEN_ADDR=
+DECIMALS_OFFSET=
 
 MAINNET_RPC_URL=
 ARBITRUM_RPC_URL=
 OPTIMISM_RPC_URL=
 BASE_RPC_URL=
 ```
-Values for `DEPLOYMENT_NETWORK` and `UNDERLYING_TOKEN_ADDR` must be provided.
+Values for `DEPLOYMENT_NETWORK`, `UNDERLYING_TOKEN_ADDR` and `DECIMALS_OFFSET` must be provided. `DECIMALS_OFFSET` is generally set to 0, so that the underlying token and the wrapper have the same decimals.
 Supported values for `DEPLOYMENT_NETWORK` are `MAINNET`, `ARBITRUM`, `OPTIMISM` and `BASE`.
 Additionnaly, RPC_URL for chosen network of deployment must be set.
 

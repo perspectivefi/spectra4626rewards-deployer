@@ -20,6 +20,7 @@ contract DeploySpectra4626Rewards is Script {
 
     string deploymentNetwork = vm.envString("DEPLOYMENT_NETWORK");
     address underlyingToken = vm.envAddress("UNDERLYING_TOKEN_ADDR");
+    uint256 decimalsOffset = vm.envUint("DECIMALS_OFFSET");
     address spectraDAO;
     address accessManager;
 
@@ -53,6 +54,7 @@ contract DeploySpectra4626Rewards is Script {
                 abi.encodeWithSelector(
                     Spectra4626Rewards(address(0)).initialize.selector,
                     underlyingToken,
+                    uint8(decimalsOffset),
                     accessManager
                 )
             )
@@ -75,6 +77,11 @@ contract DeploySpectra4626Rewards is Script {
         console.log("PROXY_ADMIN_OWNER=%s", ProxyAdmin(srProxyAdmin).owner());
         console.log("IMPLEMENTATION=%s", srImplementation);
         console.log("UNDERLYING_TOKEN=%s", ISpectra4626Rewards(srProxy).asset());
+        console.log(
+            "DECIMALS_OFFSET=%s",
+            ISpectra4626Rewards(srProxy).decimals() -
+                IERC20Metadata(ISpectra4626Rewards(srProxy).asset()).decimals()
+        );
         console.log("ACCESS_MANAGER=%s", IAccessManaged(srProxy).authority());
 
         // Format output data
@@ -84,7 +91,8 @@ contract DeploySpectra4626Rewards is Script {
         vm.serializeAddress(obj2, "proxy-admin", srProxyAdmin);
         vm.serializeAddress(obj2, "proxy-admin-owner", spectraDAO);
         vm.serializeAddress(obj2, "accessManager", accessManager);
-        string memory dc = vm.serializeAddress(obj2, "underlying-token", underlyingToken);
+        vm.serializeAddress(obj2, "underlying-token", underlyingToken);
+        string memory contractData = vm.serializeUint(obj2, "decimals-offset", decimalsOffset);
 
         // Write data to file
         path = string.concat(basePath, "output/Deployment-");
@@ -93,6 +101,6 @@ contract DeploySpectra4626Rewards is Script {
         path = string.concat(path, IERC20Metadata(srProxy).symbol());
         path = string.concat(path, ".json");
         string memory key = "key-deployment-output-file";
-        vm.writeJson(vm.serializeString(key, IERC20Metadata(srProxy).symbol(), dc), path);
+        vm.writeJson(vm.serializeString(key, IERC20Metadata(srProxy).symbol(), contractData), path);
     }
 }

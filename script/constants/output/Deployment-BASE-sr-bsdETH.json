@@ -1,0 +1,11 @@
+{
+  "sr-bsdETH": {
+    "accessManager": "0x4973b53b300d64ab72147EFF8C9d962f6b1dA02e",
+    "decimals-offset": 0,
+    "implementation": "0x7e1Aa5d385C17A68BDfC7Ae38b4b1fB0C13DC420",
+    "proxy": "0xee26cB5553Af8229dc79025Db41Ce4dfF1e10241",
+    "proxy-admin": "0x330f4Fb78633586a8Bf5ac5B4FdFeeCc77a10cb0",
+    "proxy-admin-owner": "0xe59d75C87ED608E4f5F22c9f9AFFb7b6fd02cc7C",
+    "underlying-token": "0xCb327b99fF831bF8223cCEd12B1338FF3aA322Ff"
+  }
+}
